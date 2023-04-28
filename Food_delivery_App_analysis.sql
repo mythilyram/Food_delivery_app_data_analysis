@@ -1,3 +1,5 @@
+https://medium.com/@mythilyrm/food-delivery-app-data-analysis-edf0389929ce
+
 select count(*) from zomato;
 
 # Find top 5 most voted hotels in the delivery category for a high-level overview of the hotels
@@ -17,16 +19,14 @@ order by rating desc
 limit 5;
 
 
-#The rating of a hotel is a key identifier in determining a restaurant’s performance.
-#Hence for a particular location called Banashankari find out the top 5 highly rated hotels in the delivery category.
-
+# compare the ratings of the cheapest and most expensive hotels in Indiranagar.
 With cte1 as (Select id,rating,ROW_NUMBER() OVER (ORDER BY  approx_cost) rn FROM zomato where location = 'Indiranagar'),
 cte2 as (Select id,rating,ROW_NUMBER() OVER (ORDER BY  approx_cost desc) rn FROM zomato where location = 'Indiranagar')
 select  cte1.rating as rating1,cte2.rating as rating2
     from cte1 cross join cte2
     on cte1.rn = cte2.rn
     limit 1;
-
+#OR
 select (select rating from zomato where location="Indiranagar" order by approx_cost limit 1) as rating, rating
  from zomato 
 where location="Indiranagar" 
@@ -64,7 +64,6 @@ WHERE votes = (SELECT MAX(votes)
                WHERE online_order='Yes' AND 
 	type='delivery') ;
  
-#write your query
 #To increase the maximum profit, Zomato is in need to expand its business.
 #For doing so Zomato wants the list of the top 15 restaurants which have min 150 votes,
 #have a rating greater than 3, and is currently not providing online ordering. 
