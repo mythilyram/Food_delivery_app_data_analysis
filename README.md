@@ -10,7 +10,6 @@ Python was utilized for preprocessing and cleaning the data.
 You can find the python codes and relevent outputs [here](https://github.com/mythilyram/Food_delivery_app_data_analysis/blob/main/Food_Delivery_App_Data_Analysis.ipynb).
 
 SQL was used to perform the data analysis and find insights. 
-You can find the python codes and relevent outputs [here](https://medium.com/@mythilyrm/food-delivery-app-data-analysis-edf0389929ce).
-
+You can find the SQL codes and relevent outputs in an article in [medium](https://medium.com/@mythilyrm/food-delivery-app-data-analysis-edf0389929ce).
 
 
