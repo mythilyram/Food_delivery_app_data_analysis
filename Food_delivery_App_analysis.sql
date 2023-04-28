@@ -1,3 +1,5 @@
+select count(*) from zomato;
+
 # Find top 5 most voted hotels in the delivery category for a high-level overview of the hotels
 Select name,votes,rating
 from food_db.zomato
