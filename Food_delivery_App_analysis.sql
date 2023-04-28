@@ -10,8 +10,8 @@ order by votes desc
 limit 5;
 
 
-#The rating of a hotel is a key identifier in determining a restaurant’s performance.
-#Hence for a particular location called Banashankari find out the top 5 highly rated hotels in the delivery category.
+#The rating of a hotel is a key identifier in determining a restaurant’s performance. 
+Hence for a particular location called Banashankari find out the top 5 highly rated hotels in the delivery category.
 Select name,rating, location, type
 from zomato
 where location = 'Banashankari' AND type = 'delivery'
@@ -20,13 +20,14 @@ limit 5;
 
 
 # compare the ratings of the cheapest and most expensive hotels in Indiranagar.
+#using CTE
 With cte1 as (Select id,rating,ROW_NUMBER() OVER (ORDER BY  approx_cost) rn FROM zomato where location = 'Indiranagar'),
 cte2 as (Select id,rating,ROW_NUMBER() OVER (ORDER BY  approx_cost desc) rn FROM zomato where location = 'Indiranagar')
 select  cte1.rating as rating1,cte2.rating as rating2
     from cte1 cross join cte2
     on cte1.rn = cte2.rn
     limit 1;
-#OR
+#Alternate code using sub-query
 select (select rating from zomato where location="Indiranagar" order by approx_cost limit 1) as rating, rating
  from zomato 
 where location="Indiranagar" 
@@ -38,7 +39,7 @@ order by approx_cost desc
 Select SUM(votes) as total_votes ,online_order
 from zomato
 group by online_order;
-
+#Alternate code using CTE
 WITH CTE_Yes as (Select SUM(votes) as votes_yes FROM zomato where online_order = 'Yes'),
 CTE_No as (Select SUM(votes) as votes_No FROM zomato where online_order = 'No')
 select * from CTE_Yes,CTE_No;
